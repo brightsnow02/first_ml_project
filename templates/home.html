@@ -8,25 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- Custom Design Starts Here --- */
-
-        /* --- Body & Background --- */
+        /* --- Custom Design from previous step --- */
         body {
             font-family: 'Poppins', sans-serif;
-            /* A professional dark blue background */
             background-color: #1a2a45; 
-            /* Subtle academic pattern using SVG */
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             padding: 2rem 0;
+            color: #ffffff;
         }
 
-        /* --- Glassmorphism Card Effect --- */
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -35,11 +28,8 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             padding: 2.5rem 3rem;
-            width: 100%;
-            max-width: 850px;
         }
 
-        /* --- Glowing Title --- */
         .main-title {
             text-align: center;
             font-weight: 700;
@@ -48,12 +38,7 @@
             margin-bottom: 2rem;
         }
 
-        /* --- Custom Form Styling --- */
-        .form-label {
-            font-weight: 500;
-            color: #e0e0e0;
-        }
-
+        .form-label { font-weight: 500; color: #e0e0e0; }
         .form-control, .form-select {
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -62,17 +47,8 @@
             padding: 0.75rem 1rem;
             transition: all 0.3s ease;
         }
-
-        .form-control::placeholder {
-            color: #a0a0a0;
-        }
-
-        .form-select option {
-            background-color: #1a2a45;
-            color: #ffffff;
-        }
-        
-        /* Glowing effect on focus */
+        .form-control::placeholder { color: #a0a0a0; }
+        .form-select option { background-color: #1a2a45; color: #ffffff; }
         .form-control:focus, .form-select:focus {
             background-color: rgba(255, 255, 255, 0.1);
             color: #ffffff;
@@ -80,7 +56,6 @@
             box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
         }
         
-        /* --- Animated Gradient Button --- */
         .btn-predict {
             background: linear-gradient(90deg, #00c6ff, #0072ff);
             border: none;
@@ -92,13 +67,11 @@
             transition: all 0.4s ease;
             background-size: 200% auto;
         }
-
         .btn-predict:hover {
-            background-position: right center; /* change the direction of the change here */
+            background-position: right center;
             box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
         }
 
-        /* --- Result Display Styling --- */
         .result-container {
             text-align: center;
             margin-top: 2rem;
@@ -107,102 +80,194 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .result-container h2 { margin: 0; color: #00c6ff; font-weight: 700; font-size: 1.5rem; }
+        .result-container span { color: #ffffff; font-weight: 500; }
 
-        .result-container h2 {
+        /* --- NEW STYLES FOR HISTORY PANEL --- */
+        .history-card {
+            height: 100%;
+        }
+
+        .history-title {
+            color: #e0e0e0;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        #history-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
-            color: #00c6ff;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-        .result-container span {
-            color: #ffffff;
-            font-weight: 500;
+            max-height: 400px; /* Or adjust as needed */
+            overflow-y: auto;
         }
 
+        #history-list li {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .history-score {
+            font-weight: 600;
+            color: #00c6ff;
+        }
+
+        #clear-history-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: block;
+            margin-left: auto;
+        }
+        #clear-history-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="glass-card">
-            <h1 class="main-title">Student Performance Predictor</h1>
-            
-            <form action="{{ url_for('predict_datapoint') }}" method="post">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Gender</label>
-                        <select class="form-select" name="gender" required>
-                            <option selected disabled value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Race or Ethnicity</label>
-                        <select class="form-select" name="race_ethnicity" required>
-                            <option selected disabled value="">Select Ethnicity</option>
-                            <option value="group A">Group A</option>
-                            <option value="group B">Group B</option>
-                            <option value="group C">Group C</option>
-                            <option value="group D">Group D</option>
-                            <option value="group E">Group E</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Parental Level of Education</label>
-                    <select class="form-select" name="parental_level_of_education" required>
-                        <option selected disabled value="">Select Parent Education</option>
-                        <option value="associate's degree">Associate's Degree</option>
-                        <option value="bachelor's degree">Bachelor's Degree</option>
-                        <option value="high school">High School</option>
-                        <option value="master's degree">Master's Degree</option>
-                        <option value="some college">Some College</option>
-                        <option value="some high school">Some High School</option>
-                    </select>
-                </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="glass-card">
+                    <h1 class="main-title">Student Performance Predictor</h1>
+                    <form action="{{ url_for('predict_datapoint') }}" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Gender</label>
+                                <select class="form-select" name="gender" required><option selected disabled value="">Select Gender</option><option value="male">Male</option><option value="female">Female</option></select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Race or Ethnicity</label>
+                                <select class="form-select" name="race_ethnicity" required><option selected disabled value="">Select Ethnicity</option><option value="group A">Group A</option><option value="group B">Group B</option><option value="group C">Group C</option><option value="group D">Group D</option><option value="group E">Group E</option></select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Parental Level of Education</label>
+                            <select class="form-select" name="parental_level_of_education" required><option selected disabled value="">Select Parent Education</option><option value="associate's degree">Associate's Degree</option><option value="bachelor's degree">Bachelor's Degree</option><option value="high school">High School</option><option value="master's degree">Master's Degree</option><option value="some college">Some College</option><option value="some high school">Some High School</option></select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Lunch Type</label>
+                                <select class="form-select" name="lunch" required><option selected disabled value="">Select Lunch Type</option><option value="free/reduced">Free/Reduced</option><option value="standard">Standard</option></select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Test Preparation Course</label>
+                                <select class="form-select" name="test_preparation_course" required><option selected disabled value="">Select Test Course</option><option value="none">None</option><option value="completed">Completed</option></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Reading Score (0-100)</label>
+                                <input class="form-control" type="number" name="reading_score" placeholder="Enter Reading Score" min="0" max="100" required />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Writing Score (0-100)</label>
+                                <input class="form-control" type="number" name="writing_score" placeholder="Enter Writing Score" min="0" max="100" required />
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <input class="btn btn-predict" type="submit" value="Predict Math Score" />
+                        </div>
+                    </form>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Lunch Type</label>
-                        <select class="form-select" name="lunch" required>
-                            <option selected disabled value="">Select Lunch Type</option>
-                            <option value="free/reduced">Free/Reduced</option>
-                            <option value="standard">Standard</option>
-                        </select>
+                    {% if results %}
+                    <div class="result-container">
+                        <h2><span>Predicted Math Score: </span>{{ results }}</h2>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Test Preparation Course</label>
-                        <select class="form-select" name="test_preparation_course" required>
-                            <option selected disabled value="">Select Test Course</option>
-                            <option value="none">None</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
+                    {% endif %}
                 </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Reading Score (0-100)</label>
-                        <input class="form-control" type="number" name="reading_score" placeholder="Enter Reading Score" min="0" max="100" required />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Writing Score (0-100)</label>
-                        <input class="form-control" type="number" name="writing_score" placeholder="Enter Writing Score" min="0" max="100" required />
-                    </div>
-                </div>
-                
-                <div class="mt-4">
-                    <input class="btn btn-predict" type="submit" value="Predict Math Score" />
-                </div>
-            </form>
-
-            {% if results %}
-            <div class="result-container">
-                <h2><span>Predicted Math Score: </span>{{ results }}</h2>
             </div>
-            {% endif %}
+
+            <div class="col-lg-4">
+                <div class="glass-card history-card">
+                    <h3 class="history-title"><i class="fas fa-history"></i> Prediction History</h3>
+                    <ul id="history-list">
+                        </ul>
+                    <button id="clear-history-btn">Clear History</button>
+                </div>
+            </div>
         </div>
     </div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const historyList = document.getElementById('history-list');
+            const clearButton = document.getElementById('clear-history-btn');
+            const storageKey = 'predictionHistory';
+
+            // Function to load and display history from localStorage
+            function loadHistory() {
+                const history = JSON.parse(localStorage.getItem(storageKey)) || [];
+                historyList.innerHTML = ''; // Clear current list
+                history.forEach(item => {
+                    const li = document.createElement('li');
+                    
+                    const timestamp = new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    li.innerHTML = `
+                        <span>${timestamp}</span>
+                        <span class="history-score">${item.score.toFixed(2)}</span>
+                    `;
+                    historyList.prepend(li); // Prepend to show newest first
+                });
+            }
+
+            // Function to save a new prediction
+            function savePrediction(score) {
+                const history = JSON.parse(localStorage.getItem(storageKey)) || [];
+                const newEntry = {
+                    score: score,
+                    timestamp: new Date().toISOString()
+                };
+                history.push(newEntry);
+                
+                // Optional: Keep history to a certain length, e.g., last 10 predictions
+                while (history.length > 10) {
+                    history.shift(); // Removes the oldest entry
+                }
+
+                localStorage.setItem(storageKey, JSON.stringify(history));
+                loadHistory(); // Reload the list to show the new entry
+            }
+            
+            // Function to clear history
+            function clearHistory() {
+                localStorage.removeItem(storageKey);
+                loadHistory(); // Reload the (now empty) list
+            }
+
+            // --- Event Listeners ---
+            
+            // Load history when the page loads
+            loadHistory();
+
+            // Attach event to the clear button
+            clearButton.addEventListener('click', clearHistory);
+            
+            // FIX: Changed condition to correctly handle a result of 0.0
+            {% if results is not none %}
+                // Convert Flask result to a number and save it
+                const newScore = parseFloat("{{ results }}");
+                if (!isNaN(newScore)) {
+                    savePrediction(newScore);
+                }
+            {% endif %}
+        });
+    </script>
 </body>
 </html>
